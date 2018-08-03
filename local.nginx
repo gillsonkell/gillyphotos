@@ -1,0 +1,19 @@
+server {
+	server_name gillyphotos.kellpro.test;
+	listen 8090;
+	root /var/www/gillyphotos;
+
+	set $public 0;
+	if (-f $document_root/public$uri) {
+		set $public 1;
+		rewrite (.*) /public$1;
+	}
+
+	if ($public = 0) {
+		rewrite (.*) /index.php;
+	}
+
+	location ~ \.php$ {
+		fastcgi_pass unix:/run/php/php7.1-fpm.sock;
+	}
+}

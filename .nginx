@@ -1,8 +1,18 @@
 server {
-	server_name gillyphotos.kellpro.com gillyphotos.kellpro.test;
+	server_name gillyphotos.kellpro.com;
 	listen 80;
-	listen 8090;
+	return 301 https://$server_name$request_uri;
+}
+
+server {
+	server_name gillyphotos.kellpro.com;
+	listen 443 ssl;
 	root /var/www/gillyphotos;
+
+	ssl_certificate     /etc/letsencrypt/live/gillyphotos.kellpro.com/fullchain.pem;
+	ssl_certificate_key /etc/letsencrypt/live/gillyphotos.kellpro.com/privkey.pem
+	ssl_protocols       TLSv1 TLSv1.1 TLSv1.2;
+	ssl_ciphers         HIGH:!aNULL:!MD5;
 
 	set $public 0;
 	if (-f $document_root/public$uri) {
