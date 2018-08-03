@@ -1,6 +1,6 @@
 server {
 	server_name gillyphotos.kellpro.com gillyphotos.kellpro.test;
-	listen 80 default_server;
+	listen 80;
 	listen 8090;
 	root /var/www/gillyphotos;
 
@@ -15,6 +15,7 @@ server {
 	}
 
 	location ~ \.php$ {
+		include fastcgi.conf;
 		fastcgi_pass unix:/run/php/php7.1-fpm.sock;
 	}
 }
