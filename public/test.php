@@ -1,4 +1,4 @@
 <?php
 
-sleep(25);
+sleep(5);
 echo 'Done!';
