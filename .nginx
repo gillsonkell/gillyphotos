@@ -1,6 +1,6 @@
 server {
 	server_name gillyphotos.kellpro.com gillyphotos.kellpro.test;
-	listen 80;
+	listen 80 default_server;
 	listen 8090;
 	root /var/www/gillyphotos;
 
